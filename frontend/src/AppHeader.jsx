@@ -7,7 +7,7 @@ const AppHeader = () => (
   <header className='app-header'>
     <img src={LOGO_IMG} alt='DiabAssist' className='app-header-logo' />
     <img src={BANNER_IMG} alt='AI Clinical Assistance' className='app-header-banner' />
-    <style>{'.app-header {\n      display: flex; justify-content: space-between; align-items: center; padding: 14px 44px; background: #fff; flex-shrink: 0; z-index: 40; width: 100%; }\n      .app-header-logo { height: 58px; width: auto; }\n      .app-header-banner { height: 68px; width: auto; }\n    '}</style>
+    <style>{'.app-header {\n      display: flex; justify-content: space-between; align-items: center; padding: 14px 44px; background: #fff; flex-shrink: 0; z-index: 40; width: 100%; gap: 16px; }\n      .app-header-logo { height: 68px; width: auto; max-width: 50%; object-fit: contain; flex-shrink: 0; }\n      .app-header-banner { height: 68px; width: auto; max-width: 45%; object-fit: contain; flex-shrink: 0; }\n      @media (max-width: 768px) {\n        .app-header { padding: 10px 12px; flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }\n        .app-header-logo { height: 48px; max-width: 52px; width: auto; flex-shrink: 0; }\n        .app-header-banner { height: 40px; max-width: calc(100% - 70px); width: auto; object-fit: contain; }\n      }\n      @media (max-width: 480px) {\n        .app-header { padding: 8px 10px; gap: 6px; }\n        .app-header-logo { height: 42px; max-width: 48px; }\n        .app-header-banner { height: 36px; max-width: calc(100% - 62px); }\n      }\n    '}</style>
   </header>
 );
 

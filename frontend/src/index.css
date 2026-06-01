@@ -140,6 +140,44 @@ textarea:focus-visible {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
+  /* Global footer for compact mobile layout */
+  .global-footer {
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .global-footer a {
+    color: #6b7280;
+    text-decoration: none;
+    margin: 0 4px;
+  }
+  .global-footer span {
+    color: #9ca3af;
+  }
+  @media (max-width: 640px) {
+    .global-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 6px 8px;
+      font-size: 11px;
+      gap: 4px;
+      z-index: 999;
+      border-top: 1px solid #e5e7eb;
+      background-color: #f9fafb;
+    }
+    .global-footer a { margin: 2px 3px; }
+  }
+
   /* Solid background colors (no gradients) */
   .gradient-primary {
     background: var(--primary-400);

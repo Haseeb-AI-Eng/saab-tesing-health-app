@@ -702,7 +702,7 @@ const IntelliHealthInterface = ({ patientData, onBack, onLogout }) => {
               <select
                 value={selectedOption}
                 onChange={e => setSelectedOption(e.target.value)}
-                className="w-full px-3 py-2.5 bg-gray-800 text-white rounded-xl font-semibold border border-gray-700 text-xs cursor-pointer transition-all shadow-sm"
+                 className="w-full px-3 py-2.5 bg-gray-800 text-white rounded-xl font-semibold border border-gray-700 text-[10px] sm:text-xs cursor-pointer transition-all shadow-sm"
               >
                 <option value="Generic">📝 Generic Conversation</option>
                 <option value="Explain">📋 Explain Condition</option>
@@ -714,7 +714,7 @@ const IntelliHealthInterface = ({ patientData, onBack, onLogout }) => {
               <button
                 onClick={handleAsk}
                 disabled={isLoading}
-                className="w-full py-2.5 rounded-xl font-bold text-white text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 shadow-md"
+                 className="w-full py-2.5 rounded-xl font-bold text-white text-[11px] sm:text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-1.5 shadow-md"
                 style={{ background: 'linear-gradient(135deg, #a855f7 0%, #ec4899 100%)' }}
               >
                 {isLoading ? (
@@ -726,7 +726,7 @@ const IntelliHealthInterface = ({ patientData, onBack, onLogout }) => {
 
               <button
                 onClick={() => setEnableVoiceResponse(!enableVoiceResponse)}
-                className={`w-full py-2.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center gap-1.5 border ${enableVoiceResponse ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'}`}
+                 className={`w-full py-2.5 rounded-xl font-semibold text-[10px] sm:text-xs transition-all flex items-center justify-center gap-1.5 border ${enableVoiceResponse ? 'bg-purple-500 text-white border-purple-500' : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'}`}
               >
                 {enableVoiceResponse ? <><FiMic size={12} /> Voice: ON</> : <><FiMicOff size={12} /> Voice Response</>}
               </button>
@@ -735,7 +735,7 @@ const IntelliHealthInterface = ({ patientData, onBack, onLogout }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
           {[
             { icon: <FiPlus size={14} />, label: 'New Patient', onClick: onBack, color: 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200' },
             { icon: <FiImage size={14} />, label: 'Image Diagnosis', isLabel: true, color: 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200' },
@@ -743,12 +743,12 @@ const IntelliHealthInterface = ({ patientData, onBack, onLogout }) => {
             { icon: <FiDownload size={14} />, label: 'Export Report', onClick: generatePDFReport, color: 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200' }
           ].map((btn, i) => (
             btn.isLabel ? (
-              <label key={i} className={`flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-colors border shadow-sm cursor-pointer ${btn.color}`}>
+              <label key={i} className={`flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-colors border shadow-sm cursor-pointer ${btn.color}`}>
                 {btn.icon} {btn.label}
                 <input type="file" onChange={handleImageUpload} accept="image/*" className="hidden" />
               </label>
             ) : (
-              <button key={i} onClick={btn.onClick} className={`flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-colors border shadow-sm ${btn.color}`}>
+              <button key={i} onClick={btn.onClick} className={`flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-colors border shadow-sm ${btn.color}`}>
                 {btn.icon} {btn.label}
               </button>
             )

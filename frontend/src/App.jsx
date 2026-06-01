@@ -31,9 +31,22 @@ function App() {
   }, [currentScreen]);
 
   useEffect(() => {
+    // If a previous doctor session flag exists in localStorage but
+    // sessionStorage has no auth token, the user likely closed the tab
+    // and reopened it — force logout (clear flag) so they aren't silently logged in.
+    const sessionFlag = localStorage.getItem('doctorSessionActive');
     const token = sessionStorage.getItem('authToken');
     const role = sessionStorage.getItem('userRole');
     const savedPatient = localStorage.getItem('currentPatient');
+
+    if (sessionFlag && !token) {
+      // clear persistent markers and remain on login screen
+      localStorage.removeItem('doctorSessionActive');
+      localStorage.removeItem('currentPatient');
+      setPatientData(null);
+      setCurrentScreen('login');
+      return;
+    }
 
     if (token && role === 'doctor') {
       if (savedPatient) {
@@ -50,6 +63,9 @@ function App() {
     sessionStorage.setItem('doctorName', doctor.name);
     sessionStorage.setItem('doctorEmail', doctor.email);
     sessionStorage.setItem('userRole', 'doctor');
+    // Mark that a doctor session exists — stored persistently so we can
+    // detect if the tab is later closed and reopened (sessionStorage clears).
+    localStorage.setItem('doctorSessionActive', 'true');
     setCurrentScreen('verification');
   };
 
@@ -79,6 +95,8 @@ function App() {
     sessionStorage.removeItem('doctorName');
     sessionStorage.removeItem('doctorEmail');
     localStorage.removeItem('currentPatient');
+    // Remove the persistent session marker on explicit logout
+    localStorage.removeItem('doctorSessionActive');
     setPatientData(null);
     setCurrentScreen('login');
   };
@@ -122,25 +140,25 @@ function App() {
       </div>
 
       {/* Global Footer — appears on every screen */}
-      <footer style={{
-        textAlign: 'center',
-        padding: '12px 16px',
-        fontSize: '13px',
-        color: '#6b7280',
-        borderTop: '1px solid #e5e7eb',
-        backgroundColor: '#f9fafb',
-      }}>
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none', margin: '0 8px' }}>
-          Privacy Statement
-        </a>
-        {' | '}
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none', margin: '0 8px' }}>
-          Terms and Conditions
-        </a>
-        {' | '}
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none', margin: '0 8px' }}>
-          Helpline
-        </a>
+      <footer
+        className="global-footer"
+        style={{
+          padding: '14px 16px',
+          textAlign: 'center',
+          background: '#ffffff',
+          flexShrink: 0,
+          borderTop: '1px solid #f0f0f0',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '10px',
+          alignItems: 'center'
+        }}
+      >
+        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Privacy Statement</a>
+        <span style={{ color: '#d1d5db' }}>•</span>
+        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Terms and Conditions</a>
+        <span style={{ color: '#d1d5db' }}>•</span>
+        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Helpline</a>
       </footer>
 
     </div>

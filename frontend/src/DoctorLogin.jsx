@@ -54,14 +54,15 @@ const DoctorLogin = ({ onLoginSuccess }) => {
     <div style={{ fontFamily: "'Myriad Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body, #root { height: 100%; width: 100%; overflow: hidden; }
+        html, body, #root { min-height: 100%; width: 100%; overflow-x: hidden; }
 
         .login-wrapper {
-          height: 100vh;
+          min-height: 100vh;
           width: 100%;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
+          overflow-x: hidden;
+          overflow-y: auto;
           background: #ffffff;
           position: relative;
         }
@@ -80,9 +81,9 @@ const DoctorLogin = ({ onLoginSuccess }) => {
         /* ── HERO (background image section) ── */
         .hero {
           position: relative;
-          height: 300px;              /* Reduced height further to prevent scrolling */
+          height: 300px;
           width: 100%;
-          overflow: visible;          
+          overflow: visible;
           flex-shrink: 0;
         }
 
@@ -97,21 +98,15 @@ const DoctorLogin = ({ onLoginSuccess }) => {
         }
 
         /* ── LOGIN CARD — straddles hero / content boundary ── */
-        /*
-          We position the card so its bottom half hangs below the hero.
-          The hero has overflow: visible so the card isn't clipped.
-          The card sits at bottom: -HALF_CARD_HEIGHT inside the hero.
-          We pick ~50% of the card height = ~130px for the overlap.
-        */
         .login-card {
           position: absolute;
           right: 60px;
-          bottom: -130px;            /* exactly half the card drops below hero */
+          bottom: -130px;
           background: #ffffff;
-          padding: 22px 28px;        /* even tighter to save space */
-          width: 350px;              
+          padding: 22px 28px;
+          width: 350px;
           box-shadow: 0 15px 50px rgba(0,0,0,0.15);
-          border-radius: 24px;       
+          border-radius: 24px;
           z-index: 30;
         }
 
@@ -196,12 +191,12 @@ const DoctorLogin = ({ onLoginSuccess }) => {
 
         /* ── CONTENT (white strip below hero) ── */
         .content {
-          padding: 60px 44px 20px;    /* top padding adjusted for card overhang */
+          padding: 60px 44px 20px;
           display: flex;
-          align-items: flex-start;    /* align text to top */
-          justify-content: flex-start; /* align text to left */
+          align-items: flex-start;
+          justify-content: flex-start;
           background: white;
-          flex: 1;                   
+          flex: 1;
           position: relative;
           z-index: 10;
         }
@@ -214,19 +209,17 @@ const DoctorLogin = ({ onLoginSuccess }) => {
           font-family: 'Myriad Pro', sans-serif;
         }
 
-        /* Arrow image (Purple Logo) — positioned left of card, above content */
         .arrow-wrap {
           position: absolute;
           right: 440px;
-          top: -1px;                 /* Moved slightly higher within the content area */
+          top: -1px;
           z-index: 31;
           display: flex;
           align-items: center;
           justify-content: center;
-          overflow: hidden;          /* clip any remaining black */
+          overflow: hidden;
         }
 
-        /* DApp logo in content strip, further left */
         .dapp-logo-content {
           position: absolute;
           right: 520px;
@@ -236,7 +229,6 @@ const DoctorLogin = ({ onLoginSuccess }) => {
           z-index: 11;
         }
 
-        /* ── FOOTER ── */
         .footer {
           padding: 8px 44px;
           text-align: center;
@@ -278,10 +270,51 @@ const DoctorLogin = ({ onLoginSuccess }) => {
           position: fixed;
           bottom: -15px;
           left: 0;
-          width: 120px; /* Adjust size as needed */
+          width: 120px;
           height: auto;
           z-index: 100;
-          pointer-events: none; /* Allows clicking through if needed */
+          pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+          .header { padding: 14px 20px; flex-direction: column; align-items: stretch; gap: 10px; }
+          .hero { height: 280px; }
+          .login-card {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -110px;
+            right: auto;
+            top: auto;
+            margin-top: 0;
+            width: min(calc(100% - 32px), 320px);
+            padding: 16px;
+            box-shadow: 0 18px 35px rgba(0,0,0,0.14);
+            border-radius: 18px;
+            z-index: 40;
+          }
+          .content { padding: 140px 18px 26px; }
+          .arrow-wrap, .dapp-logo-content { display: none; }
+          .bottom-left-decoration { position: absolute; bottom: -10px; left: 0; width: 100px; height: auto; z-index: 50; opacity: 1; }
+          .footer { padding: 14px 18px; }
+          .login-title { font-size: 18px; margin-bottom: 14px; }
+          .form-group { margin-bottom: 11px; }
+          .form-input { font-size: 14px; padding: 8px 9px; }
+          .footer-links { flex-wrap: wrap; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+          .hero { height: 240px; }
+          .login-card { bottom: -92px; width: min(calc(100% - 24px), 285px); padding: 14px; border-radius: 16px; font-size: 13px; }
+          .content { padding: 120px 14px 20px; }
+          .header { padding: 8px 10px; }
+          .footer { padding: 10px 12px; font-size: 11px; }
+          .login-title { font-size: 15px; margin-bottom: 11px; }
+          .form-label { font-size: 11px; margin-bottom: 4px; }
+          .form-input { font-size: 13px; padding: 7px 8px; }
+          .submit-btn { padding: 9px; font-size: 12px; margin-top: 8px; }
+          .signup-link { font-size: 11px; }
+          .bottom-left-decoration { position: absolute; width: 80px; bottom: -8px; z-index: 50; opacity: 1; }
         }
       `}</style>
 
@@ -361,15 +394,10 @@ const DoctorLogin = ({ onLoginSuccess }) => {
 
         {/* ── FOOTER ── */}
         <footer className="footer">
-          <div className="footer-links">
-            <a href="#">Privacy Statement</a><span>|</span>
-            <a href="#">Terms and Conditions</a><span>|</span>
-            <a href="#">Helpline</a>
-          </div>
         </footer>
 
-      </div>
         <img src={BOTTOM_LEFT_IMG} alt="" className="bottom-left-decoration" />
+      </div>
     </div>
   );
 };
