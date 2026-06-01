@@ -80,6 +80,9 @@ const PatientVerificationForm = ({ onVerificationSuccess, onCancel }) => {
       const heightInMeters = height / 100;
       const calculatedBmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
       setAddPatientData(prev => ({ ...prev, bmi: calculatedBmi }));
+    } else {
+      // Reset BMI if weight or height is cleared
+      setAddPatientData(prev => ({ ...prev, bmi: '' }));
     }
   }, [addPatientData.weight, addPatientData.height]);
 
@@ -118,6 +121,13 @@ const PatientVerificationForm = ({ onVerificationSuccess, onCancel }) => {
     setShowPatientList(false);
   };
 
+  // Helper: safely parse a float field — returns null if empty or NaN
+  const safeFloat = (val) => {
+    if (val === '' || val === null || val === undefined) return null;
+    const parsed = parseFloat(val);
+    return isNaN(parsed) ? null : parsed;
+  };
+
   const handleAddPatient = async (e) => {
     e.preventDefault();
     setError('');
@@ -135,9 +145,10 @@ const PatientVerificationForm = ({ onVerificationSuccess, onCancel }) => {
         presenting_complaint: addPatientData.presenting_complaint || null,
         bp: addPatientData.bp || null,
         pulse: addPatientData.pulse || null,
-        bmi: addPatientData.bmi ? parseFloat(addPatientData.bmi) : null,
-        weight: addPatientData.weight ? parseFloat(addPatientData.weight) : null,
-        height: addPatientData.height ? parseFloat(addPatientData.height) : null,
+        // FIX: use safeFloat so empty strings become null, not NaN or ""
+        bmi: safeFloat(addPatientData.bmi),
+        weight: safeFloat(addPatientData.weight),
+        height: safeFloat(addPatientData.height),
         family_history: addPatientData.family_history || null,
         social_history: addPatientData.social_history || null,
         allergies: addPatientData.allergies || null,
@@ -436,7 +447,14 @@ const PatientVerificationForm = ({ onVerificationSuccess, onCancel }) => {
                         </div>
                         <div>
                           <label className={labelClass + ' flex items-center gap-1'}><FiDroplet className="text-blue-400" size={10} /> BMI</label>
-                          <input type="number" name="bmi" value={addPatientData.bmi} step="0.1" placeholder="Auto" className={inputClass + ' bg-gray-50'} readOnly />
+                          <input
+                            type="text"
+                            name="bmi"
+                            value={addPatientData.bmi}
+                            placeholder="Auto"
+                            className={inputClass + ' bg-gray-50 cursor-not-allowed'}
+                            readOnly
+                          />
                         </div>
                         <div>
                           <label className={labelClass}>Weight (kg)</label>

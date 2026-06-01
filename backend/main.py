@@ -119,30 +119,30 @@ api_router = APIRouter(prefix="/api")
 # Pydantic Models
 # -------------------------
 class ClinicalQuery(BaseModel):
-    caseid: str
-    patid: str
-    pname: str
-    dob: str
-    age: int
+    caseid: Optional[str] = ""
+    patid: Optional[str] = ""
+    pname: Optional[str] = ""
+    dob: Optional[str] = ""
+    age: Optional[int] = 0
     gender: Optional[str] = None
     disease: Optional[str] = None
     medication: Optional[str] = None
     query_type: str = "Explain"
     custom_query: Optional[str] = ""
-    conversation_type: Optional[str] = "clinical"
-    presenting_complaint: Optional[str] = None
-    bp: Optional[str] = None
-    pulse: Optional[str] = None
-    bmi: Optional[float] = None
-    family_history: Optional[str] = None
-    social_history: Optional[str] = None
-    allergies: Optional[str] = None
-    image_data: Optional[str] = None
-    image_name: Optional[str] = None
-    pdf_text: Optional[str] = None
-    pdf_name: Optional[str] = None
-    patient_email: Optional[str] = None
-    doctor_name: Optional[str] = None
+    conversation_type: str = "clinical"
+    presenting_complaint: Optional[str] = ""
+    bp: Optional[str] = ""
+    pulse: Optional[str] = ""
+    bmi: Optional[float] = 0.0
+    family_history: Optional[str] = ""
+    social_history: Optional[str] = ""
+    allergies: Optional[str] = ""
+    image_data: Optional[str] = ""
+    image_name: Optional[str] = ""
+    pdf_text: Optional[str] = ""
+    pdf_name: Optional[str] = ""
+    patient_email: Optional[str] = ""
+    doctor_name: Optional[str] = ""
     use_ada_mode: Optional[bool] = False
 
 
@@ -292,17 +292,19 @@ def generate_advanced_ai_response(query_data: ClinicalQuery) -> Dict[str, Any]:
             }
 
     # ===== STANDARD MODE =====
+    age_text = f"{query_data.age} years" if query_data.age else "Unknown age"
+    bmi_text = f"{query_data.bmi}" if query_data.bmi else "Not recorded"
     patient_db_context = f"""
 PATIENT DATABASE RECORD:
-- Name: {query_data.pname}
-- Age: {query_data.age} years
-- Gender: {query_data.gender}
-- Known Disease/Condition: {query_data.disease or "Not specified"}
-- Current Medication: {query_data.medication or "Not specified"}
-- Blood Pressure: {query_data.bp or "Not recorded"}
-- BMI: {query_data.bmi or "Not recorded"}
-- Family History: {query_data.family_history or "Not provided"}
-- Allergies: {query_data.allergies or "None known"}
+- Name: {query_data.pname or 'Unknown patient'}
+- Age: {age_text}
+- Gender: {query_data.gender or 'Not specified'}
+- Known Disease/Condition: {query_data.disease or 'Not specified'}
+- Current Medication: {query_data.medication or 'Not specified'}
+- Blood Pressure: {query_data.bp or 'Not recorded'}
+- BMI: {bmi_text}
+- Family History: {query_data.family_history or 'Not provided'}
+- Allergies: {query_data.allergies or 'None known'}
 """
 
     uploaded_data_context = ""
