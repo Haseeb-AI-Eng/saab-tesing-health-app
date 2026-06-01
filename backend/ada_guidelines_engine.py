@@ -1,7 +1,15 @@
 """
 ADA 2026 Clinical Decision Support Engine with Multi-Guideline Support
-Ensures strict adherence to American Diabetes Association guidelines
-Plus integration of additional clinical guidelines from multiple PDF sources
+
+This module provides a deterministic wrapper around guideline content
+to generate ADA-compliant prompts for the AI model. It enforces strict
+traceability, zero-hallucination constraints, and a structured response
+format so downstream consumers can rely on guideline-backed advice.
+
+Design notes:
+ - Store uploaded guidelines as text and track metadata (word/char counts)
+ - Build a single system prompt that includes all active guideline sources
+ - Validate AI outputs for required sections and hallucination indicators
 """
 
 from typing import Dict, Any, Optional, List

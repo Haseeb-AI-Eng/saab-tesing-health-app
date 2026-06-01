@@ -1,4 +1,10 @@
 # profile.py
+# User profile management endpoints (view/update/delete).
+#
+# This module depends on authentication helpers from `auth.py` and
+# exposes endpoints to manage profile data, change passwords, and
+# store/retrieve AI analysis history. Sensitive operations (password
+# change, account deletion) require the authenticated `get_current_user`.
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, EmailStr, Field, validator
 from pymongo import MongoClient

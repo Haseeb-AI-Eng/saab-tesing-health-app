@@ -1,3 +1,8 @@
+// DoctorLogin.jsx
+// Purpose: Doctor authentication UI. This component uses demo default
+// credentials for local development; remove defaults and require real
+// credentials in production. Tokens are stored in sessionStorage here —
+// prefer secure, short-lived tokens and server-side session validation.
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from './apiConfig';

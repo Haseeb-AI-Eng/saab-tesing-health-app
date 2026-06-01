@@ -1,3 +1,8 @@
+// DoctorSignup.jsx
+// Purpose: Multi-step form for doctor registration with license upload
+// and validation. Important security note: uploaded license images should
+// be scanned and stored securely on the server; do not keep sensitive
+// files in the client or expose direct storage URLs.
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

@@ -1,3 +1,7 @@
+// TypingIndicator.js
+// Small animation component used to show AI processing/typing state.
+// Keep this stateless and purely presentational for reuse in multiple
+// chat contexts.
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaRobot } from 'react-icons/fa';

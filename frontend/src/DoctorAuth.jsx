@@ -1,3 +1,9 @@
+// DoctorAuth.jsx
+// Purpose: Combined login/signup UI for doctors and admin access.
+// Notes:
+// - Uses `API_URL` from `apiConfig.js`; update that config for local
+//   development or staging environments.
+// - Avoid storing long-lived tokens in localStorage for production.
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

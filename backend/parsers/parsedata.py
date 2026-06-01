@@ -2,6 +2,10 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 import os
 
+# Parse raw FAERS XML files into a CSV-friendly dataframe. This script
+# is optimized for memory by using `iterparse` and clearing elements
+# after processing. It is intended for offline preprocessing and may
+# need adaptation for large-scale production pipelines.
 xml_folder = os.path.join("faers_xml_2025Q4", "XML")
 
 data = []

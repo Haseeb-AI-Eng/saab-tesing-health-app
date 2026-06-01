@@ -1,4 +1,9 @@
 # auth.py
+# Authentication subsystem for users (patients and doctors).
+#
+# Contains Pydantic models for signup/login, helpers for password hashing
+# and JWT token creation. This module is intentionally opinionated about
+# validation rules (password complexity) — these can be made configurable.
 from fastapi import APIRouter, Depends, HTTPException, status, Request, Response
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, EmailStr, Field, validator
@@ -109,6 +114,11 @@ class MessageResponse(BaseModel):
 # -------------------------
 # Helper Functions
 # -------------------------
+# NOTE: `hash_password` currently uses SHA-256 for simplicity. For
+# production deployments, migrate to `bcrypt` or `argon2` (use passlib
+# or bcrypt library) to store salted hashes and resist brute-force.
+#+ Keep the helper API stable so other modules can switch implementation
+# with minimal changes.
 def hash_password(password: str) -> str:
     """Hash password using SHA-256 (use bcrypt in production)"""
     return hashlib.sha256(password.encode()).hexdigest()

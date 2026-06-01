@@ -9,7 +9,13 @@ load_dotenv()
 
 print("Connecting to MongoDB...")
 
-# connect to MongoDB
+# NOTE: This script is intended as a one-time dataset loader for local
+# environments. It reads CSV/JSON files and bulk-inserts into MongoDB.
+# Running this in a production environment may overwrite collections
+# and is NOT idempotent unless you add safeguards. Use with caution.
+#
+# The MongoDB connection string is read from environment variables;
+# avoid printing or committing the full URL to logs or source control.
 mongodburl = os.getenv('MONGODB_URL', os.getenv('LOCAL_MONGODB_URL', 'mongodb://localhost:27017/'))
 db_name = os.getenv('MONGODB_LOCAL_DB', 'local_data')
 client = MongoClient(mongodburl)

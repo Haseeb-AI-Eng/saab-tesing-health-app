@@ -1,7 +1,14 @@
 """
 Doctor authentication, registration, and license verification system.
-Includes comprehensive verification for doctor authenticity.
-Auto-seeds a default doctor account on startup.
+
+This module handles doctor-specific onboarding, license verification
+and the auto-seeding of a development admin account. Key responsibilities:
+ - Validate license/identity formats
+ - Enforce account status checks (pending, active, suspended)
+ - Provide doctor-specific login tokens
+
+Security: seeded credentials are for development only. Replace with
+secure provisioning in production and never log plaintext passwords.
 """
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, EmailStr, Field, validator
@@ -163,6 +170,9 @@ def seed_default_doctor():
     Creates the default admin doctor on startup if not already present.
     Runs once when the module is loaded. Safe to call multiple times.
     """
+    # Seed a default administrative doctor if none exists. This is
+    # intended for local development and quick demos only. The function
+    # is safe to call multiple times (idempotent check up front).
     try:
         existing = doctors_collection.find_one({
             "$or": [
@@ -226,7 +236,7 @@ def seed_default_doctor():
         print(f"[Seed] ✅ Default doctor created successfully.")
         print(f"[Seed]    Name: {DEFAULT_DOCTOR['name']}")
         print(f"[Seed]    Email: {DEFAULT_DOCTOR['email']}")
-        print(f"[Seed]    Password: {DEFAULT_DOCTOR['password']}")
+        print(f"[Seed]    Note: Default credentials are for development only. Do NOT expose passwords in logs or production environments.")
 
     except Exception as e:
         print(f"[Seed] ❌ Failed to seed default doctor: {e}")

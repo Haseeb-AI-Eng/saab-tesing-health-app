@@ -1,3 +1,7 @@
+// App_backup.jsx
+// Legacy/app snapshot of the main application layout used for
+// reference or fallback. Contains patient/doctor navigation samples
+// and demo state. Prefer `App.jsx` for the active application entry.
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChatWindow from './ChatWindow';

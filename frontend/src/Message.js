@@ -1,3 +1,9 @@
+// Message.js
+// Purpose: Renders individual chat messages and AI analysis cards.
+// Notes:
+// - Interprets `analysisData` to show risk/decision visuals for doctors.
+// - Keep heavy data processing server-side; this component focuses on
+//   presenting structured data cleanly and accessibly.
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaRobot, FaUser, FaCheckCircle, FaExclamationTriangle, FaTimesCircle, FaPills, FaNotesMedical, FaFlask, FaShieldAlt, FaInfoCircle, FaStethoscope, FaClipboardCheck, FaImage, FaHeartbeat, FaArrowRight, FaStar } from 'react-icons/fa';

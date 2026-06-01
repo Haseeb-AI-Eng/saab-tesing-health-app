@@ -1,3 +1,9 @@
+// AnalysisResponse.jsx
+// Purpose: Present structured AI analysis results to clinicians in a
+// concise, graded format (risk, decision, interactions, rationale).
+// Notes:
+// - This is a pure presentation component; data should be validated
+//   before being passed in (e.g., risk_score fields).
 import React from 'react';
 import { motion } from 'framer-motion';
 import {

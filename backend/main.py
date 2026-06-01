@@ -26,6 +26,12 @@ from ada_guidelines_engine import get_ada_engine
 
 load_dotenv()
 
+# NOTE: This module is the main FastAPI application for IntelliHealth.
+# It wires together routers, AI client initialization, and file-upload
+# helpers. Keep this file focused on high-level wiring; business logic
+# lives in the imported modules (auth, doctor_auth, profile, etc.).
+#
+# Security note: do not print secrets or full connection strings to logs.
 app = FastAPI(title="IntelliHealth AI Clinical System")
 
 # -------------------------
@@ -73,8 +79,10 @@ else:
     print("  DATABASE MODE : LOCAL MongoDB")
 print(f"  Database Name : {db_name}")
 print(f"  URL Type      : {'mongodb+srv (Atlas)' if is_live else 'localhost (Local)'}")
-masked_url = mongodburl[:50] + "..." if mongodburl else "NOT SET"
-print(f"  MongoDB URL   : {masked_url}")
+if mongodburl:
+    print("  MongoDB URL   : (configured)")
+else:
+    print("  MongoDB URL   : NOT SET")
 print("=" * 60 + "\n")
 
 # Initialize MongoDB with error handling

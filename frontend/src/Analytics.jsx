@@ -1,3 +1,9 @@
+// Analytics.jsx
+// Purpose: Visual dashboard for patient-level analytics and trends.
+// Notes:
+// - Fetches aggregated AI analysis history for a patient and renders
+//   charts using Recharts. Keep heavy aggregation server-side for
+//   performance and pass precomputed series to this component.
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {

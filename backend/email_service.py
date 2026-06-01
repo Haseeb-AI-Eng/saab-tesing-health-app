@@ -10,7 +10,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Email Configuration
+# Email configuration and delivery helpers.
+#
+# Notes:
+# - All credentials are read from environment variables. Never commit
+#   credentials to source control. In development the code prints
+#   verification/reset URLs instead of sending emails when the password
+#   is missing.
+# - Avoid logging full secrets (passwords) to prevent accidental leaks.
+#   The code should only indicate presence/absence or masked lengths.
+#
+# If you enable real email sending, set `EMAIL_HOST_USER` and
+# `EMAIL_HOST_PASSWORD` in your environment or .env file.
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", "true").lower() == "true"

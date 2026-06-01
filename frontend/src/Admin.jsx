@@ -1,3 +1,9 @@
+// Admin.jsx
+// Purpose: Doctor/admin interface for managing patient records and consultations.
+// Notes:
+// - Requires an authenticated doctor token (`authToken`) passed as a prop.
+// - Uses `API_URL` from `apiConfig` to call protected admin endpoints.
+// - Keep UI logic here; move heavy data transformations to helpers/services.
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

@@ -1,3 +1,9 @@
+// PatientDetailsForm.js
+// Purpose: Reusable patient details form used inside consultation flows.
+// Notes:
+// - Manages medication list and derived fields (BMI) for UX convenience.
+// - This component is presentation-focused and lifts state up via
+//   `setPatientData` so parent components remain authoritative.
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

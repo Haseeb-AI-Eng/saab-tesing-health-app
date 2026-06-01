@@ -1,3 +1,8 @@
+// ChatWindow.js
+// Purpose: Generic chat UI used by consultation screens. Renders
+// messages, typing state, file uploads, and the input box.
+// Design note: Keep this component presentation-focused; send/receive
+// network calls via parent props (`onSendMessage`, `onPhotoUpload`).
 import React, { useState, useRef, useEffect } from 'react';
 import Message from './Message';
 import TypingIndicator from './TypingIndicator';

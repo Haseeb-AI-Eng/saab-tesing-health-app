@@ -1,3 +1,9 @@
+// ClinicalConsultation.jsx
+// Purpose: The clinician-facing consultation UI that manages sessions,
+// structured AI queries, guideline selection, and reporting.
+// Notes:
+// - Handles session creation and message history; delegates AI calls
+//   to backend endpoints. Keep sensitive logic server-side.
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

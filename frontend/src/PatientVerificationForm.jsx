@@ -1,3 +1,8 @@
+// PatientVerificationForm.jsx
+// Purpose: Verify or add patients prior to consultation. This form
+// interacts with doctor-protected endpoints and should be used only by
+// authenticated clinicians. It provides searching, adding and selection
+// helpers and computes derived fields (e.g., BMI) client-side for UX.
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

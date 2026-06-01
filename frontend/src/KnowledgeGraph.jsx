@@ -1,3 +1,8 @@
+// KnowledgeGraph.jsx
+// Purpose: Visual, interactive representation of disease-symptom-medication
+// relationships. This component is purely visual and accepts `graphData` as
+// input; heavy graph computations should be preprocessed server-side where
+// possible to keep the UI responsive.
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaNotesMedical, FaPills, FaVirus, FaTimes, FaArrowRight } from 'react-icons/fa';

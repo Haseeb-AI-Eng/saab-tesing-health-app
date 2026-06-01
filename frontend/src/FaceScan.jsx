@@ -1,3 +1,11 @@
+// FaceScan.jsx
+// Purpose: Capture patient face via webcam and generate a unique ID.
+// Security & privacy notes:
+// - Faces and PII are sensitive; ensure transmission uses HTTPS and
+//   server-side storage is encrypted. Obtain patient consent before
+//   capturing biometric data.
+// - This component performs client-side capture only; all identity
+//   matching and storage should occur on the backend.
 import React, { useState, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { FiCamera, FiX, FiCheck, FiUpload, FiUser } from 'react-icons/fi';

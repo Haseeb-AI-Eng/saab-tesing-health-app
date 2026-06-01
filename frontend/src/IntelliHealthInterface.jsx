@@ -1,3 +1,9 @@
+// IntelliHealthInterface.jsx
+// Purpose: High-level clinician interface that composes chat, analysis
+// results, file uploads, and reporting features into a unified workflow.
+// Notes:
+// - This component orchestrates many UI pieces; extract helpers or
+//   smaller child components if complexity grows further.
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {

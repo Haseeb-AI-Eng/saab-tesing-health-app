@@ -1,3 +1,11 @@
+// App.jsx
+// Main frontend router/state manager for the clinician workflow.
+// Responsibilities:
+// - Maintain `currentScreen` and persist minimal auth/session state.
+// - Avoid embedding complex business logic here; delegate to
+//   `IntelliHealthInterface` and auth components.
+// Security note: sensitive tokens are kept in sessionStorage; prefer
+// short-lived tokens and server-side session validation in production.
 import React, { useState, useEffect } from 'react';
 import DoctorLogin from './DoctorLogin';
 import DoctorSignup from './DoctorSignup';

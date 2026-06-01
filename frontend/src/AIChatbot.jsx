@@ -1,3 +1,9 @@
+// AIChatbot.jsx
+// Purpose: In-app conversational assistant to gather symptoms and return
+// AI-generated analyses. This component is a UI wrapper — the actual
+// analysis happens via API calls to `chatbot-analyze` endpoint.
+// Security: do not send sensitive identifiers in free text; prefer
+// structured fields when available.
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiX, FiMessageCircle, FiActivity, FiAlertCircle, FiCheckCircle, FiHeart, FiClock, FiAlertTriangle } from 'react-icons/fi';
