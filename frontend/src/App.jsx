@@ -108,7 +108,7 @@ function App() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'calc(100vh - 18px)' }}>
 
       {/* Main Screen Content */}
       <div style={{ flex: 1 }}>
@@ -139,7 +139,7 @@ function App() {
         )}
       </div>
 
-      {/* Global Footer — appears on every screen */}
+      {/* Global footer links appear on all screens. Disclaimer appears on all but login. */}
       <footer
         className="global-footer"
         style={{
@@ -149,16 +149,24 @@ function App() {
           flexShrink: 0,
           borderTop: '1px solid #f0f0f0',
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
-          gap: '10px',
+          gap: '8px',
           alignItems: 'center'
         }}
       >
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Privacy Statement</a>
-        <span style={{ color: '#d1d5db' }}>•</span>
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Terms and Conditions</a>
-        <span style={{ color: '#d1d5db' }}>•</span>
-        <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Helpline</a>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+          <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Privacy Statement</a>
+          <span style={{ color: '#d1d5db' }}>•</span>
+          <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Terms and Conditions</a>
+          <span style={{ color: '#d1d5db' }}>•</span>
+          <a href="#" style={{ color: '#6b7280', textDecoration: 'none' }}>Helpline</a>
+        </div>
+        {currentScreen !== 'login' && (
+          <div style={{ color: '#6b7280', fontSize: '12px', whiteSpace: 'nowrap' }}>
+            This tool provides guideline-aligned suggestions only. The final diagnosis, treatment plan, and prescription are the sole responsibility of the licensed treating physician
+          </div>
+        )}
       </footer>
 
     </div>
