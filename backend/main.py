@@ -255,7 +255,7 @@ def generate_advanced_ai_response(query_data: ClinicalQuery) -> Dict[str, Any]:
                         "content": f"Patient: {query_data.pname}, Age: {query_data.age}\n\nAnalyze based STRICTLY on ALL guideline sources provided.",
                     },
                 ],
-                model="meta-llama/llama-4-scout-17b-16e-instruct",
+                model="google/gemma-3-27b-it"
                 max_tokens=3000,
                 temperature=0.3,
             )
