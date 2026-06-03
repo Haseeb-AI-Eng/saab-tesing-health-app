@@ -393,7 +393,8 @@ const DoctorLogin = ({ onLoginSuccess }) => {
                 width: 'auto', 
                 display: 'block',
                 background: 'transparent',
-                filter: 'saturate(1.1) contrast(1.05)',
+                filter: 'saturate(1.2) contrast(1.3) brightness(0.85)',
+                mixBlendMode: 'darken',
               }} />
           </div>
         </section>
