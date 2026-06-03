@@ -385,7 +385,6 @@ const DoctorLogin = ({ onLoginSuccess }) => {
             deep-learning enabled, clinical assistance tool.
           </p>
 
-
           {/* Arrow (Purple Logo) — using mix-blend-mode to remove black background */}
           <div className="arrow-wrap">
             <img src={ARROW_IMG} alt=""
