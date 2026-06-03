@@ -19,11 +19,15 @@
       "dest": "backend/index.js"
     },
     {
+      "src": "/sitemap.xml",
+      "dest": "/frontend/dist/sitemap.xml"
+    },
+    {
       "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/frontend/dist/index.html"
     }
   ]
 }
